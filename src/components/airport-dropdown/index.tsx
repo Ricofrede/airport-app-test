@@ -12,23 +12,18 @@ import {
 } from '@mui/material';
 
 interface AirportDropdownProps {
+    label: string
     options: Airport[]
 }
 
-export default function AirportDropdown({ options }: AirportDropdownProps): JSX.Element {
+export default function AirportDropdown({ label, options }: AirportDropdownProps): JSX.Element {
     const [value, setValue] = useState<Airport | null>(null);
-    const [inputValue, setInputValue] = useState<string>('');
 
     return (
-
         <Autocomplete
-            value={value}
+            getOptionLabel={(option) => `${option.name} (${option.iata_code})`}
             onChange={(event: any, newValue: Airport | null) => {
                 setValue(newValue);
-            }}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
             }}
             id="controllable-states-demo"
             options={options}
@@ -38,7 +33,7 @@ export default function AirportDropdown({ options }: AirportDropdownProps): JSX.
                     {option.name} ({option.iata_code})
                 </Box>
             )}
-            renderInput={(params) => <TextField {...params} label="Controllable" />}
+            renderInput={(params) => <TextField {...params} label={label} />}
         />
     )
 }
