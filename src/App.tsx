@@ -1,11 +1,14 @@
 import { Button, ThemeProvider, createTheme, Container } from '@mui/material';
-import React from 'react'
 import { useState } from 'react';
 
 import {
   Map,
   Navigation
 } from './components'
+
+import {
+  Airport
+} from './api';
 
 const theme = createTheme({
   palette: {
@@ -15,15 +18,35 @@ const theme = createTheme({
 
 function App(): JSX.Element {
   const [modalOpen, setModalOpen] = useState<boolean>(true)
+  const [startAirport, setStartAirport] = useState<Airport | null>(null)
+  const [endAirport, setEndAirport] = useState<Airport | null>(null)
+
+  function reset() {
+    setStartAirport(null)
+    setEndAirport(null)
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Button variant='contained' onClick={() => setModalOpen(true)}>Calculate New Distance</Button>
-        <Navigation isOpen={modalOpen} close={() => setModalOpen(false)} />
-        <Map />
+        <Button
+          variant='contained'
+          onClick={() => { reset(); setModalOpen(true); }}
+        >
+          Calculate New Distance
+        </Button>
+        <Navigation
+          isOpen={modalOpen}
+          close={() => setModalOpen(false)}
+          chooseStart={(start: Airport | null) => setStartAirport(start)}
+          chooseEnd={(end: Airport | null) => setEndAirport(end)}
+        />
+        <Map
+          start={startAirport}
+          end={endAirport}
+        />
       </Container>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 

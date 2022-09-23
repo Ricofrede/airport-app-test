@@ -40,9 +40,16 @@ const controlStyle = {
 interface NavigationProps {
     isOpen: boolean
     close: () => void
+    chooseStart: (airport: Airport | null) => void
+    chooseEnd: (airport: Airport | null) => void
 }
 
-export default function Navigation({ isOpen, close }: NavigationProps): JSX.Element {
+export default function Navigation({
+    isOpen,
+    close,
+    chooseStart,
+    chooseEnd
+}: NavigationProps): JSX.Element {
     const [airportList, setAirportList] = useState<Airport[]>([]);
 
     async function getAirports() {
@@ -64,16 +71,28 @@ export default function Navigation({ isOpen, close }: NavigationProps): JSX.Elem
             <Box sx={boxStyle}>
                 <form>
                     <FormControl sx={controlStyle}>
-                        <Typography variant="h6" sx={{ color: 'white' }}>Calculate Airports Distance</Typography>
+                        <Typography variant="h6" sx={{ color: 'white' }}>
+                            Calculate Airports Distance
+                        </Typography>
                     </FormControl>
                     <FormControl sx={controlStyle}>
-                        <AirportDropdown options={airportList} label={'Starting Airport'} />
+                        <AirportDropdown
+                            choose={chooseStart}
+                            options={airportList}
+                            label={'Starting Airport'}
+                        />
                     </FormControl>
                     <FormControl sx={controlStyle}>
-                        <AirportDropdown options={airportList} label={'Ending Airport'} />
+                        <AirportDropdown
+                            choose={chooseEnd}
+                            options={airportList}
+                            label={'Ending Airport'}
+                        />
                     </FormControl>
                     <FormControl sx={controlStyle}>
-                        <Button variant="contained">Calculate</Button>
+                        <Button variant="contained">
+                            Calculate
+                        </Button>
                     </FormControl>
                 </form>
             </Box>

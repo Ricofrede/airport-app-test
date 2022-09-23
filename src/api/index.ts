@@ -20,13 +20,14 @@ backend.interceptors.request.use((config) => {
     return config;
 });
 
+// Remove this later, only for testing purposes
 const testing = [
     {
         "name": "Chicago 1",
         "iata_code": "ORD1",
         "icao_code": "KORD1",
-        "lat": 41.978367,
-        "lng": -87.904712,
+        "lat": 31.978367,
+        "lng": -77.904712,
         "country_code": "US"
     },
     {
@@ -40,16 +41,16 @@ const testing = [
 ]
 
 export async function getAirportsList() {
-    let airports: Airport[] = testing //[]
+    let airports: Airport[] = testing// []
 
-    /* try {
-        const { data } = await backend.get('/airports')
-        if (data.response) {
-            airports = data.response
-        }
-    } catch (e) {
-        console.log('Failed while fetching the airports\' API:', e)
-    } */
+    // try {
+    //     const { data } = await backend.get('/airports')
+    //     if (data.response) {
+    //         airports = data.response
+    //     }
+    // } catch (e) {
+    //     console.log('Failed while fetching the airports\' API:', e)
+    // }
 
     return airports
-} 
+}

@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import './index.scss'
 
 import {
@@ -14,16 +13,20 @@ import {
 interface AirportDropdownProps {
     label: string
     options: Airport[]
+    choose: (airport: Airport | null) => void
 }
 
-export default function AirportDropdown({ label, options }: AirportDropdownProps): JSX.Element {
-    const [value, setValue] = useState<Airport | null>(null);
+export default function AirportDropdown({
+    label,
+    options,
+    choose
+}: AirportDropdownProps): JSX.Element {
 
     return (
         <Autocomplete
             getOptionLabel={(option) => `${option.name} (${option.iata_code})`}
             onChange={(event: any, newValue: Airport | null) => {
-                setValue(newValue);
+                choose(newValue);
             }}
             id="controllable-states-demo"
             options={options}
