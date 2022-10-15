@@ -61,16 +61,21 @@ function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <Button
-          variant='contained'
-          onClick={() => { reset(); setModalOpen(true); }}
-        >
-          Calculate New Distance
-        </Button>
+      <Container style={{ padding: '0' }}>
+        <div style={{ display: 'block' }}>
+          <Button
+            style={{ display: 'block', width: 'fit-content', margin: '0 auto' }}
+            variant='contained'
+            onClick={() => { reset(); setModalOpen(true); }}
+          >
+            Calculate New Distance
+          </Button>
+        </div>
         {distance ? (
-          <Box style={{ backgroundColor: 'white' }}>
-            <Typography>Total distance: {distance}</Typography>
+          <Box style={{ backgroundColor: 'black', color: 'white', width: 'fit-content' }}>
+            <Typography
+              style={{ display: 'block', width: 'max-content', margin: '0 auto' }}
+            >Total distance: {distance}</Typography>
           </Box>
         ) : <></>}
         <Navigation

@@ -8,7 +8,7 @@ import {
 const airportIcon = '/assets/images/iconmonstr-airport-9.svg'
 
 const containerStyle = {
-    width: '100vh',
+    width: '100%',
     height: '100vh'
 };
 
