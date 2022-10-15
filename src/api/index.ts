@@ -23,7 +23,7 @@ backend.interceptors.request.use((config) => {
 // Remove this later, only for testing purposes
 const testing = [
     {
-        "name": "Chicago 1",
+        "name": "AAA",
         "iata_code": "ORD1",
         "icao_code": "KORD1",
         "lat": 31.978367,
@@ -31,11 +31,19 @@ const testing = [
         "country_code": "US"
     },
     {
-        "name": "Chicago 2",
+        "name": "BBB",
         "iata_code": "ORD2",
         "icao_code": "KORD2",
         "lat": 41.978367,
         "lng": -87.904712,
+        "country_code": "US"
+    },
+    {
+        "name": "CCC",
+        "iata_code": "ORD3",
+        "icao_code": "KORD3",
+        "lat": 26.978367,
+        "lng": -80.904712,
         "country_code": "US"
     },
 ]
