@@ -1,5 +1,5 @@
 import React, { useState, useCallback, memo } from 'react'
-import { GoogleMap, useJsApiLoader, Marker, Polygon } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, Polyline } from '@react-google-maps/api';
 
 import {
     Airport
@@ -20,11 +20,13 @@ const center = {
 interface MapProps {
     start: Airport | null
     end: Airport | null
+    isReady: boolean
 }
 
 function Map({
     start,
-    end
+    end,
+    isReady
 }: MapProps): JSX.Element {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -82,7 +84,7 @@ function Map({
         };
 
         return (
-            <Polygon
+            <Polyline
                 path={path}
                 options={options}
             />
@@ -97,7 +99,7 @@ function Map({
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
-            {setPath()}
+            {isReady ? setPath() : <></>}
             {setMarker(start)}
             {setMarker(end)}
         </GoogleMap>

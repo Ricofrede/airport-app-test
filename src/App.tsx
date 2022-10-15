@@ -20,10 +20,12 @@ function App(): JSX.Element {
   const [modalOpen, setModalOpen] = useState<boolean>(true)
   const [startAirport, setStartAirport] = useState<Airport | null>(null)
   const [endAirport, setEndAirport] = useState<Airport | null>(null)
+  const [isReady, setIsReady] = useState<boolean>(false)
 
   function reset() {
     setStartAirport(null)
     setEndAirport(null)
+    setIsReady(false)
   }
 
   return (
@@ -40,10 +42,12 @@ function App(): JSX.Element {
           close={() => setModalOpen(false)}
           chooseStart={(start: Airport | null) => setStartAirport(start)}
           chooseEnd={(end: Airport | null) => setEndAirport(end)}
+          submit={() => setIsReady(true)}
         />
         <Map
           start={startAirport}
           end={endAirport}
+          isReady={isReady}
         />
       </Container>
     </ThemeProvider >

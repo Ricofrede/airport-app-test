@@ -42,13 +42,15 @@ interface NavigationProps {
     close: () => void
     chooseStart: (airport: Airport | null) => void
     chooseEnd: (airport: Airport | null) => void
+    submit: () => void
 }
 
 export default function Navigation({
     isOpen,
     close,
     chooseStart,
-    chooseEnd
+    chooseEnd,
+    submit
 }: NavigationProps): JSX.Element {
     const [airportList, setAirportList] = useState<Airport[]>([]);
 
@@ -90,7 +92,9 @@ export default function Navigation({
                         />
                     </FormControl>
                     <FormControl sx={controlStyle}>
-                        <Button variant="contained">
+                        <Button
+                            onClick={() => { submit(); close(); }}
+                            variant="contained">
                             Calculate
                         </Button>
                     </FormControl>
