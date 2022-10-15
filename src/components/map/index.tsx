@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from 'react'
+import React, { useState, useEffect, useCallback, memo } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, Polyline } from '@react-google-maps/api';
 
 import {
@@ -34,10 +34,24 @@ function Map({
     })
 
     const [map, setMap] = useState(null)
+    const [resetMap, setResetMap] = useState(false)
+
+    useEffect(() => {
+        if (!start) {
+            setResetMap(true)
+        }
+    }, [start])
+
+    useEffect(() => {
+        if (resetMap) {
+            setResetMap(false)
+        }
+    }, [resetMap])
 
     const onLoad = useCallback(function callback(map: any) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
+        // const bounds = new window.google.maps.LatLngBounds(center);
+        // map.fitBounds(bounds);
+        map.setZoom(4)
         setMap(map)
     }, [])
 
@@ -91,11 +105,11 @@ function Map({
         )
     }
 
-    return isLoaded ? (
+    return isLoaded && !resetMap ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={3}
+            zoom={4}
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
