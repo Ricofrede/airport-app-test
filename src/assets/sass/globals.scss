@@ -1,6 +1,7 @@
 body {
   background-color: black;
   height: 100vh;
+  height: -webkit-fill-available;
   margin: 0;
   overflow: hidden;
 }
