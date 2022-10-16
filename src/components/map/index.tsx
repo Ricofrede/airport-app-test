@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, memo } from 'react'
+import { useState, useEffect, useCallback, memo } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, Polyline } from '@react-google-maps/api';
 
 import {
@@ -29,7 +29,6 @@ function Map({
         googleMapsApiKey: process.env.REACT_APP_MAPS_KEY || ''
     })
 
-    const [map, setMap] = useState(null)
     const [resetMap, setResetMap] = useState(false)
 
     useEffect(() => {
@@ -46,11 +45,6 @@ function Map({
 
     const onLoad = useCallback(function callback(map: any) {
         map.setZoom(4)
-        setMap(map)
-    }, [])
-
-    const onUnmount = useCallback(function callback(map: any) {
-        setMap(null)
     }, [])
 
     function setMarker(airport: Airport | null) {
@@ -105,7 +99,6 @@ function Map({
             center={center}
             zoom={4}
             onLoad={onLoad}
-            onUnmount={onUnmount}
         >
             {isReady ? setPath() : <></>}
             {setMarker(start)}
