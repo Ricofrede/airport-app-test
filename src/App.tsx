@@ -2,21 +2,22 @@ import {
   Button,
   ThemeProvider,
   createTheme,
-  Container,
   Box,
   Typography
 } from '@mui/material';
-import { useState, useEffect } from 'react';
-import { getDistance } from 'geolib'
+import { useState } from 'react';
 
 import {
   Map,
   Navigation
 } from './components'
 
+import styles from './assets/mui/global';
+
 import {
   Airport
 } from './api';
+import useDistance from './hooks/useDistance';
 
 const theme = createTheme({
   palette: {
@@ -29,29 +30,12 @@ function App(): JSX.Element {
   const [startAirport, setStartAirport] = useState<Airport | null>(null)
   const [endAirport, setEndAirport] = useState<Airport | null>(null)
   const [isReady, setIsReady] = useState<boolean>(false)
-  const [distance, setDistance] = useState<string>('')
 
-  useEffect(() => {
-    if (isReady && startAirport && endAirport) {
-      const newDistanceRaw = getDistance(
-        { latitude: startAirport.lat, longitude: startAirport.lng },
-        { latitude: endAirport.lat, longitude: endAirport.lng }
-      )
-
-      const distanceRawWorld = Math.floor(newDistanceRaw / 1000)
-      const distanceRawUSA = Math.floor(distanceRawWorld / 1.609)
-
-      const distanceWorld = new Intl.NumberFormat()
-        .format(distanceRawWorld)
-      const distanceUSA = new Intl.NumberFormat()
-        .format(distanceRawUSA)
-
-
-      setDistance(`${distanceUSA} Mi (${distanceWorld} Km)`)
-    } else {
-      setDistance('')
-    }
-  }, [isReady])
+  const distance = useDistance({
+    isReady: isReady,
+    start: startAirport,
+    end: endAirport
+  })
 
   function reset() {
     setStartAirport(null)
@@ -61,34 +45,18 @@ function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <div
-        style={{
-          display: 'block',
-          margin: '1vh',
-          height: '5vh'
-        }}
-      >
+      <Box sx={styles.newDistanceBox}>
         <Button
-          style={{ display: 'block', width: 'fit-content', margin: '0 auto' }}
+          sx={styles.newDistanceButton}
           variant='contained'
           onClick={() => { reset(); setModalOpen(true); }}
         >
           Calculate New Distance
         </Button>
-      </div>
-      <Box
-        style={{
-          backgroundColor: 'black',
-          color: 'white',
-          width: 'fit-content',
-          margin: '1vh',
-          height: '5vh'
-        }}
-      >
+      </Box>
+      <Box sx={styles.labelDistanceBox}>
         {distance ? (
-          <Typography
-            style={{ display: 'block', width: 'max-content', margin: '0 auto' }}
-          >Total distance: {distance}</Typography>
+          <Typography sx={styles.labelDistanceText}>Total distance: {distance}</Typography>
         ) : <></>}
       </Box>
       <Navigation

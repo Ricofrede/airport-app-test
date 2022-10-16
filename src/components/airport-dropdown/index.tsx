@@ -1,4 +1,5 @@
 import './index.scss'
+import styles from './mui';
 
 import {
     Airport
@@ -30,7 +31,7 @@ export default function AirportDropdown({
             }}
             id="controllable-states-demo"
             options={options}
-            sx={{ width: 300 }}
+            sx={styles.autocomplete}
             renderOption={(props, option) => (
                 <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
                     {option.name} ({option.iata_code})

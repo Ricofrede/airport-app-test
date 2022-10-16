@@ -4,13 +4,9 @@ import { GoogleMap, useJsApiLoader, Marker, Polyline } from '@react-google-maps/
 import {
     Airport
 } from '../../api';
+import styles from './mui';
 
 const airportIcon = '/assets/images/iconmonstr-airport-9.svg'
-
-const containerStyle = {
-    width: '100%',
-    height: '86vh'
-};
 
 const center = {
     lat: 37.0902,
@@ -49,8 +45,6 @@ function Map({
     }, [resetMap])
 
     const onLoad = useCallback(function callback(map: any) {
-        // const bounds = new window.google.maps.LatLngBounds(center);
-        // map.fitBounds(bounds);
         map.setZoom(4)
         setMap(map)
     }, [])
@@ -107,7 +101,7 @@ function Map({
 
     return isLoaded && !resetMap ? (
         <GoogleMap
-            mapContainerStyle={containerStyle}
+            mapContainerStyle={styles.containerStyle}
             center={center}
             zoom={4}
             onLoad={onLoad}
