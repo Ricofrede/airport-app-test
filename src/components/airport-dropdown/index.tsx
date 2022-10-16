@@ -1,4 +1,3 @@
-import './index.scss'
 import styles from './mui';
 
 import {

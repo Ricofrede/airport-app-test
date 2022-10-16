@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import './index.scss'
+import { useState, useEffect } from 'react'
 import styles from './mui';
 
 import {
@@ -55,7 +54,7 @@ export default function Navigation({
             <Box sx={styles.boxStyle}>
                 <form>
                     <FormControl sx={styles.controlStyle}>
-                        <Typography variant="h6" sx={{ color: 'white' }}>
+                        <Typography variant="h6" className="calculate-title">
                             Calculate Airports Distance
                         </Typography>
                     </FormControl>

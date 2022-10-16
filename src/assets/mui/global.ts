@@ -19,7 +19,10 @@ const styles = {
     labelDistanceText: {
         display: 'block',
         width: 'max-content',
-        margin: '0 auto'
+        margin: '0 auto',
+        'line-height': '100%',
+        position: 'relative',
+        top: '20%'
     }
 }
 

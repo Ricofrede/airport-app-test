@@ -14,6 +14,9 @@ const styles = {
         margin: '20px auto',
         display: 'block',
         'max-width': 'max-content',
+        '.calculate-title': {
+            color: 'white'
+        }
     }
 }
 
