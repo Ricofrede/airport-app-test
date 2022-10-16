@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import styles from './mui';
 
 import {
@@ -9,14 +8,15 @@ import {
 } from '@mui/material';
 
 import {
-    getAirportsList,
     Airport
 } from '../../api';
+
+import useFetchAirports from '../../hooks/useFetchAirports';
 
 import {
     AirportDropdown
 } from '../index'
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
 interface NavigationProps {
     isOpen: boolean
@@ -33,16 +33,54 @@ export default function Navigation({
     chooseEnd,
     submit
 }: NavigationProps): JSX.Element {
-    const [airportList, setAirportList] = useState<Airport[]>([]);
+    const { airportList, loading, error } = useFetchAirports()
 
-    async function getAirports() {
-        const result = await getAirportsList()
-        setAirportList(result)
+    function renderStatus(): JSX.Element {
+        if (loading) {
+            return (
+                <CircularProgress />
+            )
+        }
+
+        if (error) {
+            return (
+                <div>{error}</div>
+            )
+        }
+
+        if (!airportList.length) return <></>
+
+        return (
+            <form>
+                <FormControl sx={styles.controlStyle}>
+                    <Typography variant="h6" className="calculate-title">
+                        Calculate Airports Distance
+                    </Typography>
+                </FormControl>
+                <FormControl sx={styles.controlStyle}>
+                    <AirportDropdown
+                        choose={chooseStart}
+                        options={airportList}
+                        label={'Starting Airport'}
+                    />
+                </FormControl>
+                <FormControl sx={styles.controlStyle}>
+                    <AirportDropdown
+                        choose={chooseEnd}
+                        options={airportList}
+                        label={'Ending Airport'}
+                    />
+                </FormControl>
+                <FormControl sx={styles.controlStyle}>
+                    <Button
+                        onClick={() => { submit(); close(); }}
+                        variant="contained">
+                        Calculate
+                    </Button>
+                </FormControl>
+            </form>
+        )
     }
-
-    useEffect(() => {
-        getAirports()
-    }, [])
 
     return (
         <Modal
@@ -52,34 +90,7 @@ export default function Navigation({
             aria-describedby="modal-modal-description"
         >
             <Box sx={styles.boxStyle}>
-                <form>
-                    <FormControl sx={styles.controlStyle}>
-                        <Typography variant="h6" className="calculate-title">
-                            Calculate Airports Distance
-                        </Typography>
-                    </FormControl>
-                    <FormControl sx={styles.controlStyle}>
-                        <AirportDropdown
-                            choose={chooseStart}
-                            options={airportList}
-                            label={'Starting Airport'}
-                        />
-                    </FormControl>
-                    <FormControl sx={styles.controlStyle}>
-                        <AirportDropdown
-                            choose={chooseEnd}
-                            options={airportList}
-                            label={'Ending Airport'}
-                        />
-                    </FormControl>
-                    <FormControl sx={styles.controlStyle}>
-                        <Button
-                            onClick={() => { submit(); close(); }}
-                            variant="contained">
-                            Calculate
-                        </Button>
-                    </FormControl>
-                </form>
+                {renderStatus()}
             </Box>
         </Modal >
     )

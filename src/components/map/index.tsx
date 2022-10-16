@@ -77,10 +77,10 @@ function Map({
         ];
 
         const options = {
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
+            strokeColor: '#f00',
+            strokeOpacity: 0.9,
             strokeWeight: 5,
-            fillColor: '#FF0000',
+            fillColor: '#000000',
             fillOpacity: 0.35,
             clickable: false,
             draggable: false,

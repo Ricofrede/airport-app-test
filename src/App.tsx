@@ -21,7 +21,13 @@ import useDistance from './hooks/useDistance';
 
 const theme = createTheme({
   palette: {
-    mode: 'dark'
+    mode: 'dark',
+    primary: {
+      main: '#f00'
+    }
+  },
+  typography: {
+    fontFamily: 'Roboto',
   },
 });
 
@@ -57,7 +63,9 @@ function App(): JSX.Element {
       <Box sx={styles.labelDistanceBox}>
         {distance ? (
           <Typography sx={styles.labelDistanceText}>Total distance: {distance}</Typography>
-        ) : <></>}
+        ) : (
+          <Typography sx={styles.labelDistanceText}>Airports Distance Calculator</Typography>
+        )}
       </Box>
       <Navigation
         isOpen={modalOpen}

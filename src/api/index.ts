@@ -15,50 +15,18 @@ export const backend = axios.create({
 
 backend.interceptors.request.use((config) => {
     if (config?.url) {
-        config.url = `${config.url}?api_key=${process.env.REACT_APP_API_KEY}`
+        config.url = `${config.url}&api_key=${process.env.REACT_APP_API_KEY}`
     }
     return config;
 });
 
-// Remove this later, only for testing purposes
-const testing = [
-    {
-        "name": "AAA",
-        "iata_code": "ORD1",
-        "icao_code": "KORD1",
-        "lat": 31.978367,
-        "lng": -77.904712,
-        "country_code": "US"
-    },
-    {
-        "name": "BBB",
-        "iata_code": "ORD2",
-        "icao_code": "KORD2",
-        "lat": 41.978367,
-        "lng": -87.904712,
-        "country_code": "US"
-    },
-    {
-        "name": "CCC",
-        "iata_code": "ORD3",
-        "icao_code": "KORD3",
-        "lat": 26.978367,
-        "lng": -80.904712,
-        "country_code": "US"
-    },
-]
-
 export async function getAirportsList() {
-    let airports: Airport[] = testing// []
+    let airports: Airport[] = []
 
-    // try {
-    //     const { data } = await backend.get('/airports')
-    //     if (data.response) {
-    //         airports = data.response
-    //     }
-    // } catch (e) {
-    //     console.log('Failed while fetching the airports\' API:', e)
-    // }
+    const { data } = await backend.get('/airports?country_code=US')
+    if (data?.response) {
+        airports = data.response
+    }
 
     return airports
 }
