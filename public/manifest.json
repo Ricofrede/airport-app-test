@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Airports Distances",
+  "name": "Airports Distance Calculator",
   "icons": [
     {
       "src": "favicon.ico",
