@@ -61,7 +61,13 @@ function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ display: 'block', margin: '10px' }}>
+      <div
+        style={{
+          display: 'block',
+          margin: '1vh',
+          height: '5vh'
+        }}
+      >
         <Button
           style={{ display: 'block', width: 'fit-content', margin: '0 auto' }}
           variant='contained'
@@ -70,13 +76,21 @@ function App(): JSX.Element {
           Calculate New Distance
         </Button>
       </div>
-      {distance ? (
-        <Box style={{ backgroundColor: 'black', color: 'white', width: 'fit-content', marginBottom: '10px' }}>
+      <Box
+        style={{
+          backgroundColor: 'black',
+          color: 'white',
+          width: 'fit-content',
+          margin: '1vh',
+          height: '5vh'
+        }}
+      >
+        {distance ? (
           <Typography
             style={{ display: 'block', width: 'max-content', margin: '0 auto' }}
           >Total distance: {distance}</Typography>
-        </Box>
-      ) : <></>}
+        ) : <></>}
+      </Box>
       <Navigation
         isOpen={modalOpen}
         close={() => setModalOpen(false)}
