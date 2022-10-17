@@ -1,7 +1,7 @@
 const styles = {
     containerStyle: {
         width: '100%',
-        height: '86vh'
+        height: 'calc(var(--vh, 1vh) * 86)' // '86vh'
     }
 }
 

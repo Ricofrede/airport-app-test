@@ -1,8 +1,8 @@
 const styles = {
     newDistanceBox: {
         display: 'block',
-        margin: 'calc(var(--vh, 1vh) * 1)', // 1vh
-        height: 'calc(var(--vh, 1vh) * 5)' // 5vh
+        margin: 'calc(var(--vh, 1vh) * 1)', // '1vh'
+        height: 'calc(var(--vh, 1vh) * 5)' // '5vh'
     },
     newDistanceButton: {
         display: 'block',
@@ -13,8 +13,8 @@ const styles = {
         backgroundColor: 'black',
         color: 'white',
         width: 'fit-content',
-        margin: 'calc(var(--vh, 1vh) * 1) auto', // 1vh auto
-        height: 'calc(var(--vh, 1vh) * 5)' // 5vh
+        margin: 'calc(var(--vh, 1vh) * 1) auto', // '1vh auto'
+        height: 'calc(var(--vh, 1vh) * 5)' // '5vh'
     },
     labelDistanceText: {
         display: 'block',
