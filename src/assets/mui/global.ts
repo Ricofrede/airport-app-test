@@ -1,20 +1,18 @@
 const styles = {
     newDistanceBox: {
         display: 'block',
-        margin: 'calc(var(--vh, 1vh) * 1)', // '1vh'
-        height: 'calc(var(--vh, 1vh) * 5)' // '5vh'
+        height: '36px',
+        margin: '0px 20px'
     },
     newDistanceButton: {
         display: 'block',
-        width: 'fit-content',
-        margin: '0 auto'
+        width: 'fit-content'
     },
     labelDistanceBox: {
         backgroundColor: 'black',
         color: 'white',
         width: 'fit-content',
-        margin: 'calc(var(--vh, 1vh) * 1) auto', // '1vh auto'
-        height: 'calc(var(--vh, 1vh) * 5)' // '5vh'
+        margin: '10px 20px'
     },
     labelDistanceText: {
         display: 'block',
@@ -23,6 +21,15 @@ const styles = {
         'line-height': '100%',
         position: 'relative',
         top: '20%'
+    },
+    upperBox: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        height: 'calc(var(--vh, 1vh) * 14)' // '14vh'
+
     }
 }
 

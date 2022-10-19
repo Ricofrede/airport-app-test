@@ -51,21 +51,23 @@ function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={styles.newDistanceBox}>
-        <Button
-          sx={styles.newDistanceButton}
-          variant='contained'
-          onClick={() => { reset(); setModalOpen(true); }}
-        >
-          Calculate New Distance
-        </Button>
-      </Box>
-      <Box sx={styles.labelDistanceBox}>
-        {distance ? (
-          <Typography sx={styles.labelDistanceText}>Total distance: {distance}</Typography>
-        ) : (
-          <Typography sx={styles.labelDistanceText}>Airports Distance Calculator</Typography>
-        )}
+      <Box sx={styles.upperBox}>
+        <Box sx={styles.newDistanceBox}>
+          <Button
+            sx={styles.newDistanceButton}
+            variant='contained'
+            onClick={() => { reset(); setModalOpen(true); }}
+          >
+            Calculate New Distance
+          </Button>
+        </Box>
+        <Box sx={styles.labelDistanceBox}>
+          {distance ? (
+            <Typography sx={styles.labelDistanceText}>Total distance: {distance}</Typography>
+          ) : (
+            <Typography sx={styles.labelDistanceText}>Airports Distance Calculator</Typography>
+          )}
+        </Box>
       </Box>
       <Navigation
         isOpen={modalOpen}
