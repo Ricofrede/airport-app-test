@@ -111,7 +111,18 @@ export default function AirportDropdown({
     options,
     choose
 }: AirportDropdownProps): JSX.Element {
-    const myOptions = options.map(option => `${option.name} (${option.iata_code})`)
+    const myOptions = options.map(option => {
+        const localeArray = []
+        option.city && localeArray.push(option.city)
+        option.state && localeArray.push(option.state)
+
+        let locale = ''
+        if (localeArray.length) {
+            locale = localeArray.join(', ') + ' - '
+        }
+
+        return `${locale}${option.name} (${option.iata_code})`
+    })
 
     return (
         <Autocomplete
